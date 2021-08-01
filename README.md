@@ -1,3 +1,3 @@
 # Run #
-npm start dev
-npm start server
+- npm start dev
+- npm start server
