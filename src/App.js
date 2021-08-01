@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "antd/dist/antd.css";
+import "./App.css";
+import axios from "axios";
+import UsersList from "./pages/usersList";
 
-function App() {
+const App = () => {
+  const [initLoading, setInitLoading] = useState(true);
+  const [users, setUsers] = useState([]);
+
+  const getUsers = () => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/users`)
+      .then((r) => {
+        setUsers(r.data);
+        setInitLoading(false);
+      })
+      .catch(() => {
+        console.log("Error");
+      });
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <UsersList
+        users={users}
+        setUsers={setUsers}
+        getUsers={getUsers}
+        initLoading={initLoading}
+      />
+    </>
   );
-}
+};
 
 export default App;
