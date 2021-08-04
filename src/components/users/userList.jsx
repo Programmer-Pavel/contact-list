@@ -1,58 +1,60 @@
-import {List, Avatar, Button, Skeleton} from "antd";
+import {List, Button} from "antd";
 import React, {useState} from "react";
 import "antd/dist/antd.css";
-import image from "../images/female.png";
-import UserInfo from "../pages/userInfo";
-import EditUserModal from "../components/userModals/editUserModal";
-import DeleteUserModal from '../components/userModals/deleteUserModal';
-import AddUserModal from '../components/userModals/addUserModal';
+import EditUser from "./user/userModals/editUser";
+import DeleteUser from './user/userModals/deleteUser';
+import AddUser from './user/userModals/addUser';
+import {useDispatch, useSelector} from "react-redux";
+import {setCurrentUser} from '../../store/reducers/userReducer';
+import {NavLink} from "react-router-dom";
 
-const UsersList = ({initLoading, users, setUsers, getUsers}) => {
+const UserList = () => {
     const [isOpenEditModal, toggleEditModal] = useState(false);
     const [isOpenDeleteModal, toggleDeleteModal] = useState(false);
     const [isOpenAddModal, toggleAddModal] = useState(false);
-    const [currentUser, setCurrentUser] = useState();
+
+    const dispatch = useDispatch()
+
+    const {users, isFetching, currentUser} = useSelector(state => state.users)
 
 
     const onEditBtnClick = (user) => {
         toggleEditModal(true)
-        setCurrentUser(user)
+        dispatch(setCurrentUser(user))
     }
 
     const onDeleteBtnClick = (user) => {
         toggleDeleteModal(true)
-        setCurrentUser(user)
+        dispatch(setCurrentUser(user))
     }
+
 
     return (
         <>
             {isOpenEditModal && (
-                <EditUserModal
+                <EditUser
                     isOpenModal={isOpenEditModal}
                     toggleOpenModal={toggleEditModal}
                     currentUser={currentUser}
-                    getUsers={getUsers}
                 />
             )}
             {isOpenDeleteModal && (
-                <DeleteUserModal
+                <DeleteUser
                     isOpenModal={isOpenDeleteModal}
                     toggleOpenModal={toggleDeleteModal}
                     currentUserId={currentUser.id}
-                    getUsers={getUsers}
                 />
             )}
             {isOpenAddModal && (
-                <AddUserModal
+                <AddUser
                     isOpenModal={isOpenAddModal}
                     toggleOpenModal={toggleAddModal}
                     currentUser={currentUser}
-                    getUsers={getUsers}
                 />
             )}
             <List
                 className="user-list"
-                loading={initLoading}
+                loading={isFetching}
                 itemLayout="horizontal"
                 dataSource={users}
                 bordered
@@ -86,26 +88,11 @@ const UsersList = ({initLoading, users, setUsers, getUsers}) => {
                             </Button>,
                         ]}
                     >
-                        <Skeleton avatar title={false} loading={user.loading} active>
-                            <List.Item.Meta
-                                avatar={
-                                    <Avatar
-                                        src={
-                                            user.gender === "male"
-                                                ? "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                                                : image
-                                        }
-                                    />
-                                }
-                                title={
-                                    <span>
-                    {user.last_name} {user.first_name} {user.middle_name}
-                  </span>
-                                }
-                                description={<UserInfo user={user} getUsers={getUsers} currentUser={currentUser}
-                                                       setCurrentUser={setCurrentUser}/>}
-                            />
-                        </Skeleton>
+                        <List.Item.Meta
+                            title={<NavLink to={`/users/${user.id}`} onClick={() => dispatch(setCurrentUser(user))}>
+                                {user.last_name} {user.first_name} {user.middle_name}
+                            </NavLink>}
+                        />
                     </List.Item>
                 )}
             />
@@ -113,4 +100,4 @@ const UsersList = ({initLoading, users, setUsers, getUsers}) => {
     );
 };
 
-export default UsersList;
+export default UserList;

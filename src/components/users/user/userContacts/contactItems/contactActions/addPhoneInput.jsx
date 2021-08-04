@@ -1,13 +1,12 @@
 import React from "react";
 import { Form } from "antd";
-import ContactInput from "../contactInputContainer";
+import ContactInput from "../../../../../contactInputContainer";
 import InputMask from "react-input-mask";
 
-const AddPhoneInput = ({ currentUser, getUsers }) => {
+const AddPhoneInput = ({ currentUser }) => {
   return (
     <ContactInput
       btnName="телефон"
-      getUsers={getUsers}
       currentUser={currentUser}
       inputName="phone"
     >

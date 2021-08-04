@@ -1,14 +1,13 @@
 import React from "react";
 import { Form, Input } from "antd";
-import ContactInput from "../contactInputContainer";
+import ContactInput from "../../../../../contactInputContainer";
 
-const AddEmailInput = ({ currentUser, getUsers }) => {
+const AddEmailInput = ({ currentUser }) => {
   return (
     <ContactInput
       btnName="email"
       inputName="email"
       currentUser={currentUser}
-      getUsers={getUsers}
     >
       <Form.Item
         name="email"

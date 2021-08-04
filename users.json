@@ -1,66 +1,49 @@
 {
   "users": [
     {
-      "last_name": "Сухова",
-      "first_name": "Анна",
-      "middle_name": "Ивановна",
-      "gender": "female",
-      "birth_date": "24 ноября 2000",
-      "contacts": [
-        {
-          "type": "email",
-          "value": "feref@msil.ru"
-        },
-        {
-          "type": "phone",
-          "value": "+7(564) 507-8565"
-        }
-      ],
-      "id": 6
-    },
-    {
-      "last_name": "Смизонина",
-      "first_name": "Алевтина",
-      "middle_name": "Ивановна",
-      "gender": "female",
-      "birth_date": "27 июля 1996",
-      "contacts": [
-        {
-          "type": "email",
-          "value": "rgi@mail.ru"
-        },
-        {
-          "type": "phone",
-          "value": "+7(657) 567-5676"
-        }
-      ],
-      "id": 7
-    },
-    {
-      "last_name": "Ермолаев",
+      "last_name": "Сказочкин",
       "first_name": "Андрей",
       "middle_name": "Рустафович",
       "gender": "male",
       "birth_date": "27 июля 1996",
       "contacts": [
         {
-          "type": "phone",
-          "value": "+7(999) 999-9999"
+          "type": "email",
+          "value": "fef@mail.ru"
         },
         {
+          "type": "phone",
+          "value": "+7(999) 999-9999"
+        }
+      ],
+      "id": 7
+    },
+    {
+      "last_name": "Сухова",
+      "first_name": "Анна",
+      "middle_name": "Рустафович",
+      "gender": "female",
+      "birth_date": "31 января 1980",
+      "contacts": [
+        {
           "type": "email",
-          "value": "fftf@mail.ru"
+          "value": "fehueh@mail.ru"
         }
       ],
       "id": 8
     },
     {
-      "last_name": "Сказочкин",
-      "first_name": "Афанасий",
+      "last_name": "Петров",
+      "first_name": "Сергей",
       "middle_name": "Рустафович",
       "gender": "male",
-      "birth_date": "31 января 1980",
-      "contacts": [],
+      "birth_date": "24 ноября 2000",
+      "contacts": [
+        {
+          "type": "phone",
+          "value": "+7(456) 666-6666"
+        }
+      ],
       "id": 9
     }
   ]

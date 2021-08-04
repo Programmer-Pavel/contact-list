@@ -1,7 +1,8 @@
 import React from "react";
-import ModalContainer from "../modalContainer";
+import ModalContainer from "../../../modalContainer";
 import { Form, Input, Select, Button } from "antd";
-import axios from "axios";
+import {useDispatch} from "react-redux";
+import {addUser} from "../../../../store/action-creators/users";
 
 const { Option } = Select;
 
@@ -24,8 +25,10 @@ const formItemLayout = {
   },
 };
 
-const AddUserModal = ({ isOpenModal, toggleOpenModal, getUsers }) => {
+const AddUser = ({ isOpenModal, toggleOpenModal}) => {
   const [form] = Form.useForm();
+
+  const dispatch = useDispatch()
 
   const onSubmit = async (values) => {
     const userdata = {
@@ -37,15 +40,8 @@ const AddUserModal = ({ isOpenModal, toggleOpenModal, getUsers }) => {
       contacts: [],
     };
 
-    await axios
-      .post(`${process.env.REACT_APP_API_URL}/users`, userdata)
-      .then(() => {
-        toggleOpenModal(false);
-        getUsers();
-      })
-      .catch((error) => {
-        console.log("user edit error!", error);
-      });
+    dispatch(addUser(userdata)).then(() => toggleOpenModal(false))
+
   };
 
   return (
@@ -149,4 +145,4 @@ const AddUserModal = ({ isOpenModal, toggleOpenModal, getUsers }) => {
   );
 };
 
-export default AddUserModal;
+export default AddUser;
